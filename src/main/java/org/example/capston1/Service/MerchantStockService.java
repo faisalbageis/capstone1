@@ -101,4 +101,28 @@ public class MerchantStockService {
         return false;
     }
 
+
+    public int repricing(String productid ,String merchantid, int newPrice){
+        boolean valid = false;
+        for(MerchantStock i: merchantStocks){
+            if(i.getProductId().equalsIgnoreCase(productid)&&i.getMerchantId().equalsIgnoreCase(merchantid)){
+                valid = true;
+            }
+        }
+
+        if(valid) {
+            for (Product i : productService.products) {
+                if (i.getId().equalsIgnoreCase(productid)) {
+                    if (i.getPrice() != newPrice) {
+                        i.setPrice(newPrice);
+                        return 0;
+                    } else {
+                        return 1;
+                    }
+                }
+            }
+        }
+        return 2;
+    }
+
 }

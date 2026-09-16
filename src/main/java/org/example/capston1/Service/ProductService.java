@@ -79,19 +79,7 @@ public class ProductService {
         return found;
     }
 
-    public int repricing(String id , int newPrice){
-        for(Product i:products){
-            if(i.getId().equalsIgnoreCase(id)){
-                if(i.getPrice()!=newPrice){
-                    i.setPrice(newPrice);
-                    return 0;
-                }else {
-                    return 1;
-                }
-            }
-        }
-        return 2;
-    }
+
 
 
     public boolean discount(String productid,double percentage){

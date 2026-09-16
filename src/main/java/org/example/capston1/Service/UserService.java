@@ -13,6 +13,7 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class UserService {
     ArrayList<User> users = new ArrayList<>();
+    ArrayList<String[]> perchesditems = new ArrayList<>();
     private final MerchantService merchantService;
     private final ProductService productService;
     private final MerchantStockService merchantStockService;
@@ -112,6 +113,8 @@ public class UserService {
             }
 
         }
+        String[] prechesd = {productid , userid};
+        perchesditems.add(prechesd);
       return 5;
     }
 
@@ -175,6 +178,8 @@ public class UserService {
                 }
             }
         }
+        String[] prechesd = {productid , userid};
+        perchesditems.add(prechesd);
         return 5;
     }
 
@@ -212,6 +217,16 @@ public class UserService {
 
         if(!mi){
             return 2;
+        }
+        boolean purchased =false;
+        for(int i =0;i<perchesditems.size();i++){
+            if(perchesditems.get(i)[0].equalsIgnoreCase(productid)&&perchesditems.get(i)[1].equalsIgnoreCase(userid)){
+                purchased = true;
+            }
+        }
+
+        if(!purchased){
+            return 5;
         }
 
 

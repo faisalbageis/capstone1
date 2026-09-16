@@ -118,8 +118,10 @@ public class UserController {
             return ResponseEntity.status(400).body(new apiResponse("merchant id not found"));
         } else if (success==3) {
             return ResponseEntity.status(200).body(new apiResponse("refund complete successfully"));
-        }else {
+        }else if(success ==4) {
             return ResponseEntity.status(400).body(new apiResponse("id not found"));
+        }else{
+            return ResponseEntity.status(400).body(new apiResponse("sorry you dont perches this product"));
         }
     }
 

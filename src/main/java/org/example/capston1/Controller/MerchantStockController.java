@@ -81,6 +81,18 @@ public class MerchantStockController {
         }
         return ResponseEntity.status(400).body(new apiResponse("product id not found or not authorised to update"));
     }
+    @PutMapping("/repricing/{id}/{newPrice}")
+    public ResponseEntity<?> repricing(@PathVariable String productid,String merchantid,@PathVariable int newPrice){
+        int success = merchantStockService.repricing(productid, merchantid,newPrice);
+
+        if(success==0){
+            return ResponseEntity.status(200).body(new apiResponse("price changed successfully "));
+        } else if (success==1) {
+            return ResponseEntity.status(400).body(new apiResponse("new price is the same as the old"));
+        }else {
+            return ResponseEntity.status(400).body(new apiResponse("not valid to change price"));
+        }
+    }
 
 
 }

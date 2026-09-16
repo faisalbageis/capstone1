@@ -82,19 +82,6 @@ public class ProductController {
         return ResponseEntity.status(200).body(found);
     }
 
-    @PutMapping("/repricing/{id}/{newPrice}")
-    public ResponseEntity<?> repricing(@PathVariable String id,@PathVariable int newPrice){
-        int success = productService.repricing(id, newPrice);
-
-        if(success==0){
-            return ResponseEntity.status(200).body(new apiResponse("price changed successfully "));
-        } else if (success==1) {
-            return ResponseEntity.status(400).body(new apiResponse("new price is the same as the old"));
-        }else {
-            return ResponseEntity.status(400).body(new apiResponse("id not found"));
-        }
-    }
-
     @PutMapping("/discount/{productid}/{percentage}")
     public ResponseEntity<?> discount(@PathVariable String productid,@PathVariable double percentage){
         boolean success = productService.discount(productid, percentage);
